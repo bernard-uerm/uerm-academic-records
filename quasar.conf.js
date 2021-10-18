@@ -46,12 +46,15 @@ module.exports = function (/* ctx */) {
     build: {
       vueRouterMode: 'hash', // available values: 'hash', 'history'
       env: {
-        API_URL: 'http://localhost:3000/',
-        // API_URL: 'https://apps.uerm.edu.ph:3443/',
+        // API_URL: 'http://localhost:3000/',
+        API_URL: 'https://api.uerm.edu.ph/',
+        SECONDARY_API_URL: 'https://apps.uerm.edu.ph:3443/',
         API_KEY: 'FJO2qvHeSW4RIPYx33EF1hXBvdZQ2aI3',
         LOCAL_API_URL: 'http://localhost:3000/',
         LOCAL_PC_API_URL: 'http://192.168.43.64:3000/',
-        LOCAL_API_KEY: 'FJO2qvHeSW4RIPYx33EF1hXBvdZQ2aI3'
+        LOCAL_API_KEY: 'FJO2qvHeSW4RIPYx33EF1hXBvdZQ2aI3',
+        API_USERNAME: 'academic_records',
+        API_PASSWORD: '12345'
       },
       // transpile: false,
 
@@ -103,7 +106,12 @@ module.exports = function (/* ctx */) {
       // directives: [],
 
       // Quasar plugins
-      plugins: ['Cookies', 'LocalStorage']
+      plugins: [
+        'Cookies',
+        'LocalStorage',
+        'Notify',
+        'Dialog'
+      ]
     },
 
     // animations: 'all', // --- includes all animations

@@ -11,10 +11,11 @@
           </q-card-section>
           <q-card-section>
             <q-input
+              name="trackingNumber"
               square
               v-model="tracking.trackingNumber"
               type="text"
-              label="Tracking No."
+              label="Reference No."
               class="q-mb-md"
               :rules="[ val => val && val.length > 0 || 'Please enter your Tracking #']"
               maxlength="30"
@@ -28,7 +29,7 @@
               </template>
             </q-input>
             <div class="q-ma-md text-center">
-              <q-chip color="secondary" text-color="white" icon="note_add" clickable @click="requestRecord">
+              <q-chip color="secondary" size="18px" text-color="white" icon="school" clickable @click="requestRecord">
                 REQUEST FOR UERM ACADEMIC RECORDS
               </q-chip>
             </div>
@@ -74,8 +75,21 @@ export default {
     inputValue(otp) {
       this.login.otp = otp;
     },
-    async trackDocument () {
+    async trackDocument (evt) {
+      console.log(evt)
       console.log('track')
+      const formData = new FormData(evt.target)
+      const submitResult = []
+
+      for (const [ name, value ] of formData.entries()) {
+        console.log(name, value)
+        submitResult.push({
+          name,
+          value
+        })
+      }
+
+      console.log(submitResult)
     },
     requestRecord () {
       this.$router.push('/academic-records-application')
