@@ -1,6 +1,6 @@
 <template>
-  <div class="row justify-center">
-    <div class="col-lg-12 col-sm-12 col-md-12 col-xs-10">
+  <div class="row justify-center q-ma-sm">
+    <div class="col-lg-10 col-sm-12 col-md-12 col-xs-12">
       <q-card square class="shadow-15 q-mb-lg">
         <q-form
           ref="track"
@@ -29,8 +29,11 @@
               </template>
             </q-input>
             <div class="q-ma-md text-center">
-              <q-chip color="secondary" size="18px" text-color="white" icon="school" clickable @click="requestRecord">
-                REQUEST FOR UERM ACADEMIC RECORDS
+              <q-chip color="secondary" size="16px" text-color="white" icon="school" class="gt-sm" clickable @click="requestRecord">
+                REQUEST FOR ACADEMIC RECORDS
+              </q-chip>
+              <q-chip color="secondary" size="16px" text-color="white" icon="school" class="lt-md"  clickable @click="requestRecord">
+                REQUEST RECORDS
               </q-chip>
             </div>
           </q-card-section>

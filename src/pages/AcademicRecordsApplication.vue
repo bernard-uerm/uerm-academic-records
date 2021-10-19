@@ -313,7 +313,7 @@
                                     label="Period Enrolled S.Y. From"
                                     hint=""
                                     color="secondary"
-                                    :rules="[ val => val && val.length > 0 || 'Field Required']"
+                                    :rules="[ val => val && val !== '' || 'Field Required']"
                                   />
                                 </div>
                                 <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 q-pt-sm">
@@ -348,7 +348,7 @@
                                     label="Period Enrolled S.Y. To"
                                     hint=""
                                     color="secondary"
-                                    :rules="[ val => val && val.length > 0 || 'Field Required']"
+                                    :rules="[ val => val && val !== '' || 'Field Required']"
                                   />
                                 </div>
                                 <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 q-pt-sm">
@@ -537,7 +537,7 @@
                 </q-card-section>
               </q-expansion-item>
 
-              <q-expansion-item
+              <!-- <q-expansion-item
                 expand-separator
                 icon="verified_user"
                 label="VERIFICATION"
@@ -555,22 +555,6 @@
                     <q-card-section>
                       <div class="row">
                         <div class="col-12">
-                          <q-file
-                            name="student_file"
-                            v-model="registrationInfo.fileProof"
-                            label="File Proof"
-                            color="secondary"
-                            accept=".pdf"
-                            hint="Upload a PDF File containing proofs that you are a Student of UERM"
-                            :rules="[ val => val !== '' && val !== null || 'Please upload a proof that you are a former or a current student']"
-                          >
-                            <template v-slot:prepend>
-                              <q-icon name="verified_user" />
-                            </template>
-                            <template v-slot:append>
-                              <q-icon name="close" @click="registrationInfo.fileProof = ''" class="cursor-pointer" />
-                            </template>
-                          </q-file>
                         </div>
                       </div>
                     </q-card-section>
@@ -598,30 +582,63 @@
                     </q-card-section>
                   </q-card>
                 </q-card-section>
-              </q-expansion-item>
+              </q-expansion-item> -->
 
               <q-expansion-item
                 expand-separator
                 icon="mode_edit_outline"
-                label="TERMS AND CONDITIONS"
-                v-model="expansionItem5"
+                label="VERIFICATION AND TERMS"
+                v-model="expansionItem4"
                 group="primaryGroup"
                 header-class="text-white"
                 expand-icon-class="text-white"
-                :disable="this.disableExpansion5"
+                :disable="this.disableExpansion4"
               >
-                <q-card-section v-if="expansionItem5">
+                <q-card-section v-if="expansionItem4">
                   <q-card>
                     <q-card-section>
-                      <div class="text-body1">
-                        <q-checkbox
-                          v-model="checkTerms"
-                          :label="terms"
-                          size="xl"
-                          color="secondary"
-                        >
-                        </q-checkbox>
-                      </div>
+                      <q-card>
+                        <q-card-section align="center" class="bg-primary text-white text-overline">
+                          VERIFICATION
+                        </q-card-section>
+                        <q-card-section>
+                          <q-file
+                            name="student_file"
+                            v-model="registrationInfo.fileProof"
+                            label="File Proof"
+                            color="secondary"
+                            accept=".pdf"
+                            hint="Upload a PDF File containing proofs that you are a Student of UERM"
+                            :rules="[ val => val !== '' && val !== null || 'Please upload a proof that you are a former or a current student']"
+                          >
+                            <template v-slot:prepend>
+                              <q-icon name="verified_user" />
+                            </template>
+                            <template v-slot:append>
+                              <q-icon name="close" @click="registrationInfo.fileProof = ''" class="cursor-pointer" />
+                            </template>
+                          </q-file>
+                        </q-card-section>
+                      </q-card>
+                    </q-card-section>
+
+                    <q-card-section>
+                      <q-card>
+                        <q-card-section align="center" class="bg-primary text-white text-overline">
+                          TERMS AND CONDITIONS
+                        </q-card-section>
+                        <q-card-section>
+                          <div class="text-body1">
+                            <q-checkbox
+                              v-model="checkTerms"
+                              :label="terms"
+                              size="xl"
+                              color="secondary"
+                            >
+                            </q-checkbox>
+                          </div>
+                        </q-card-section>
+                      </q-card>
                     </q-card-section>
                     <q-card-section class="bg-secondary" align="center">
                       <q-btn-group>
@@ -643,43 +660,6 @@
                           label="SUBMIT"
                           type="submit"
                         />
-                        <q-dialog v-model="confirmationDialog" persistent transition-show="flip-down" transition-hide="flip-up">
-                          <q-card>
-                            <q-card-section class="bg-secondary text-center text-h5 text-white">
-                              <div class="row justify-center">
-                                <div class="text-left text-h5 text-white text-weight-thin">
-                                  CONFIRM ACADEMIC REQUEST
-                                </div>
-                              </div>
-                            </q-card-section>
-                            <q-card-section align="center" class="text-h5 text-weight-thin">
-                              ARE YOU SURE YOU WANT TO SUBMIT THIS REQUEST?
-                            </q-card-section>
-                            <q-card-section class="bg-secondary" align="center">
-                              <q-btn-group>
-                                <q-btn
-                                  push
-                                  color="negative"
-                                  size="lg"
-                                  icon="arrow_back"
-                                  :class="`full-height text-white`"
-                                  label="GO BACK"
-                                  @click="confirmationDialog = false"
-                                />
-                                <q-btn
-                                  push
-                                  size="lg"
-                                  color="positive"
-                                  icon="arrow_forward"
-                                  :class="`full-height text-white`"
-                                  type="submit"
-                                  label="SUBMIT"
-                                  @click.prevent="registerUser($event)"
-                                />
-                              </q-btn-group>
-                            </q-card-section>
-                          </q-card>
-                        </q-dialog>
                       </q-btn-group>
                     </q-card-section>
                   </q-card>

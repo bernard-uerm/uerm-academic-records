@@ -15,13 +15,12 @@ const routes = [
     ]
   },
   {
-    path: '/students',
-    component: () => import('layouts/StudentLayout.vue'),
+    path: '/tracker/:id',
+    component: () => import('layouts/MainLayout.vue'),
     children: [
-      { path: '', component: () => import('pages/Students.vue') }
+      { path: '', component: () => import('pages/Tracking.vue') }
     ]
   },
-
   // Always leave this as last one,
   // but you can also remove it
   {
